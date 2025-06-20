@@ -1,0 +1,188 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{% static 'booking/style.css' %}" />
+  <title>Movie Seat Booking</title>
+</head>
+<body>
+  <div class="location">Visakhapatnam</div>
+
+  <form method="POST" action="{% url 'submit_booking' %}">
+    {% csrf_token %}
+
+    <!-- Movie -->
+    <div class="movie-container">
+      <label>Pick a movie:</label>
+      <select id="movie" name="movie">
+        <option value="180">Pushpa2: The Rule</option>
+        <option value="120">Guntur Kaaram</option>
+        <option value="170">Salaar: The Cease Fire</option>
+        <option value="140">Devara: Part1</option>
+        <option value="140">Game Changer</option>
+        <option value="150">OG</option>
+      </select>
+    </div>
+
+    <!-- Date -->
+    <div class="select-date">
+      <label for="datePicker">Select Date:</label>
+      <input type="date" id="datePicker" name="date">
+    </div>
+
+    <!-- Show Timing -->
+    <div class="show-timings">
+      <label>Show Timings:</label>
+      <select id="showTimings" name="show_timing">
+        <option value="11:00am">11:00 AM</option>
+        <option value="2:10pm">2:10 PM</option>
+        <option value="6:15pm">6:15 PM</option>
+        <option value="9:00pm">9:00 PM</option>
+      </select>
+    </div>
+
+    <!-- Theatre -->
+    <div class="theatre-container">
+      <label>Select Theatre:</label>
+      <select id="theatreSelect" name="theatre">
+        <option value="Sangam">Sangam</option>
+        <option value="Sarat">Sarat</option>
+        <option value="Melody">Melody</option>
+        <option value="Jagadamba">Jagadamba</option>
+        <option value="Sharada">Sharada</option>
+        <option value="Ramadevi">Ramadevi</option>
+        <optgroup label="STBL: Madhuravada">
+          <option value="screen1">screen1</option>
+          <option value="screen2">screen2</option>
+        </optgroup>
+        <optgroup label="Cinepolis">
+          <option value="screen1">screen1</option>
+          <option value="screen2">screen2</option>
+        </optgroup>
+        <optgroup label="Varun Inox">
+          <option value="screen1">screen1</option>
+          <option value="screen2">screen2</option>
+        </optgroup>
+        <optgroup label="Chitralaya: Inox">
+          <option value="screen1">screen1</option>
+          <option value="screen2">screen2</option>
+        </optgroup>
+      </select>
+    </div>
+
+    <!-- Seat Legend -->
+    <ul class="showcase">
+      <li><div class="seat"></div><small>N/A</small></li>
+      <li><div class="seat selected"></div><small>Selected</small></li>
+      <li><div class="seat occupied"></div><small>Occupied</small></li>
+    </ul>
+
+    <!-- Seats -->
+    <div class="container">
+      <div class="screen"></div>
+      <div class="row">
+        <div class="seat"></div>
+        <div class="seat"></div>
+        <div class="seat"></div>
+        <div class="seat"></div>
+        <div class="seat"></div>
+        <div class="seat"></div>
+        <div class="seat"></div>
+        <div class="seat"></div>
+      </div>
+      <div class="row">
+        <div class="seat"></div>
+        <div class="seat"></div>
+        <div class="seat"></div>
+        <div class="seat occupied"></div>
+        <div class="seat occupied"></div>
+        <div class="seat"></div>
+        <div class="seat"></div>
+        <div class="seat"></div>
+      </div>
+      
+       <div class="row">
+        <div class="seat"></div>
+        <div class="seat"></div>
+        <div class="seat"></div>
+        <div class="seat"></div>
+        <div class="seat"></div>
+        <div class="seat"></div>
+        <div class="seat occupied"></div>
+        <div class="seat occupied"></div>
+      </div>
+      <div class="row">
+        <div class="seat"></div>
+        <div class="seat"></div>
+        <div class="seat"></div>
+        <div class="seat"></div>
+        <div class="seat"></div>
+        <div class="seat"></div>
+        <div class="seat"></div>
+        <div class="seat"></div>
+      </div>
+       <div class="row">
+        <div class="seat"></div>
+        <div class="seat"></div>
+        <div class="seat"></div>
+        <div class="seat occupied"></div>
+        <div class="seat occupied"></div>
+        <div class="seat"></div>
+        <div class="seat"></div>
+        <div class="seat"></div>
+      </div>
+       <div class="row">
+        <div class="seat"></div>
+        <div class="seat"></div>
+        <div class="seat"></div>
+        <div class="seat"></div>
+        <div class="seat occupied"></div>
+        <div class="seat occupied"></div>
+        <div class="seat occupied"></div>
+        <div class="seat"></div>
+      </div>
+    </div>
+
+    <!-- Count and Price -->
+    <p class="text">
+      You have selected <span id="count">0</span> seats for a price of ₹<span id="total">0</span>
+    </p>
+
+    <!-- Terms -->
+    <div class="terms-and-conditions">
+      <label for="termsCheckbox">T&C:</label>
+      <input type="checkbox" id="termsCheckbox">
+      <span>Cancellation available till 24hrs of show (80% refund).</span>
+    </div>
+
+    <!-- Promo Code -->
+    <div class="apply-promo">
+      <label for="promoCode">Apply Promo Code:</label>
+      <input type="text" id="promoCode" name="promo_code">
+    </div>
+
+    <!-- Payment Method -->
+    <div class="select-payment-method">
+      <label for="paymentMethod">Select Payment Method:</label>
+      <select id="paymentMethod" name="payment_method">
+        <option value="UPI">UPI</option>
+        <option value="Credit/Debit card">Credit/Debit card</option>
+        <option value="Net banking">Net banking</option>
+        <option value="Wallet">Wallet</option>
+      </select>
+    </div>
+
+    <!-- Hidden Inputs for JS -->
+    <input type="hidden" name="selected_seats" id="selectedSeats" value="">
+    <input type="hidden" name="total_price" id="totalPrice" value="">
+
+    <!-- Submit Button -->
+    <button type="submit" class="book-button">Book Tickets</button>
+  </form>
+
+  <script src="{% static 'booking/script.js' %}"></script>
+</body>
+</html>

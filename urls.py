@@ -1,7 +1,7 @@
-from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
+from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('booking/', include('booking.urls')),  # This line includes the URLs from the booking app
+    path('', views.booking_page, name='booking_page'),  # Remove 'booking/' here!
+    path('submit_booking/', views.submit_booking, name='submit_booking'),
 ]
