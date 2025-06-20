@@ -58,4 +58,18 @@ Promo code (optional)
 Stored in Django's database (SQLite).
 
 Future enhancement: Display bookings to user or admin panel.
+Project folder structure:
+moviebooking/
+├── booking/
+│   ├── static/booking/
+│   │   ├── style.css
+│   │   └── script.js
+│   ├── templates/booking/
+│   │   └── booking_page.html
+│   ├── models.py
+│   ├── views.py
+│   └── urls.py
+├── db.sqlite3
+├── settings.py
+└── urls.py
 
